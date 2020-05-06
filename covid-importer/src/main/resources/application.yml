@@ -1,0 +1,22 @@
+logging:
+  level:
+    web: DEBUG
+    org.hibernate.SQL: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: INFO
+    com.pis.covid: TRACE
+
+spring:
+  profiles:
+    default: importer
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/covid?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=Europe/Bucharest
+    username: root
+    password: 1418
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+        ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5Dialect

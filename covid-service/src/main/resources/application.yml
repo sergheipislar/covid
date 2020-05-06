@@ -1,0 +1,48 @@
+---
+logging:
+  level:
+    web: DEBUG
+    com.pis.covid: DEBUG
+    org.hibernate.SQL: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: INFO
+
+spring:
+  jpa:
+    hibernate:
+      jdbc:
+        time_zone: UTC
+
+---
+spring:
+  profiles: integration_test
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MySQL
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MySQL
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+
+---
+spring:
+  profiles: prod
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/covid?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=Europe/Bucharest
+    username: root
+    password: 1418
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
