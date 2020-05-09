@@ -80,7 +80,8 @@ public class GoogleSheetDataImporter {
 
     public void importData() {
         Optional<Date> maxDate = retrieveMaxDateFromRepository(recordRepository);
-        if (!maxDate.isPresent() || !maxDate.get().equals(Date.valueOf(LocalDate.now()))){
+        Date today = Date.valueOf(LocalDate.now());
+        if (!maxDate.isPresent() || !maxDate.get().equals(today)){
             Iterable<Region> regions = regionRepository.findAll();
             Map<String, Region> regionsMap = ImmutableList.copyOf(regions)
                     .stream().collect(Collectors.toMap(region -> region.getName(), region -> region));
