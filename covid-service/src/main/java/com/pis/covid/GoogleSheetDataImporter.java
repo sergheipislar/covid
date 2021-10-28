@@ -50,8 +50,12 @@ public class GoogleSheetDataImporter {
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
     private static final int NUMBER_OF_ROWS = 42;
     private static final List<String> SPREADSHEET_IDS = List.of(
-            //"1lRXBGBA_FA3iezeL9S9BQa-WtHre9SOSRrihSiCozsY", // april
-            "1d33m3Alj8_CMt1O27sfQYC0a6xJgjLWR7Y8j5fpFIg4" // may
+            //"1lRXBGBA_FA3iezeL9S9BQa-WtHre9SOSRrihSiCozsY" // april
+            //"1d33m3Alj8_CMt1O27sfQYC0a6xJgjLWR7Y8j5fpFIg4" // may
+            //"1VsZ2_5KOpYKHhnP_wSfh5b3WaZixmvNaKWTN5_on2aQ" // june
+            //"1LgXkdkI8VucuBRmt46ykkOtC43J9ny4kRls5jCiQ_-I" // july
+            //"1LSk_9c2Yw6S6XTyDr8jXFyz1iE3ABkr_Q8tqTWs7t8Y" // august
+            "18SfuyZk30v6NYpRxYkMR77FpMf-uA6Pg0a_OdOyd1lY" // september
     );
 
     @Autowired
@@ -180,7 +184,7 @@ public class GoogleSheetDataImporter {
                     Date date = Date.valueOf("2020-" + title.get());
                     List<RetrievedData> retrievedData = new ArrayList<>();
                     for (List<Object> values : valueRange.getValues()) {
-                        retrievedData.add(new RetrievedData(Integer.parseInt((String) values.get(1)), (String) values.get(0)));
+                        retrievedData.add(new RetrievedData(Integer.parseInt(((String) values.get(1)).replace(".", "")), (String) values.get(0)));
                     }
                     valueMap.put(date, retrievedData);
                 }
